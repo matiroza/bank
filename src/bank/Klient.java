@@ -1,6 +1,7 @@
 package bank;
 import bank.Osoba;
-import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities;
+
+//usunąc metode stworzKonto z diagramuKlas
 
 public class Klient extends Osoba {
     private Integer Id;
@@ -46,4 +47,41 @@ public class Klient extends Osoba {
                 ", pensja=" + pensja +
                 '}'+ super.toString();
     }
+
+    //TODO
+    void zalozKonto(String typ){
+
+    }
+
+    //TODO
+    void sprawdzSaldo(Konto konto){
+
+    }
+
+    //TODO
+    void wyplataPieniedzy(double kwota){
+
+    }
+
+    //TODO
+    void wniosekOpozyczke(double kwota){
+
+    }
+
+    //TODO
+    void stworzRaport(java.util.Date Od,java.util.Date Do){
+
+    }
+
+    //TODO
+    void zacznijPrzelw(){
+
+    }
+
+    //TODO
+    void wybierzKonto(String nazwa){
+
+    }
+
+
 }
