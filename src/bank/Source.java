@@ -24,6 +24,7 @@ public class Source {
         PKO.addOsoba(klient2);
         //System.out.println(PKO);
         klient1.zalozKonto("konto 1", 34234, "walutowe", "xys");
-        System.out.print(klient1.getKonta().get(0).getNazwa());
+        System.out.println(klient1.getKonta().get(0).getNazwa());
+        klient1.sprawdzSaldo(klient1.getKonta().get(0));
     }
 }

@@ -61,9 +61,8 @@ public class Klient extends Osoba {
         konta.add(new Konto(nazwa, saldo, typKonta, numerKonta));
     }
 
-    //TODO
     void sprawdzSaldo(Konto konto){
-
+        System.out.println("Saldo " + "\"" + konto.getNazwa() + "\"" + ": " + konto.getSaldo() + " zł");
     }
 
     //TODO
