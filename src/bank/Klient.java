@@ -1,18 +1,27 @@
 package bank;
 import bank.Osoba;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //usunąc metode stworzKonto z diagramuKlas
 
 public class Klient extends Osoba {
     private Integer Id;
     private double zdolnoscKredytowa;
     private double pensja;
+    private List<Konto> konta;
+
 
     public Klient(String firstName, String lastName, String adress, String pesel, Integer id, double zdolnoscKredytowa, double pensja) {
         super(firstName, lastName, adress, pesel);
         Id = id;
         this.zdolnoscKredytowa = zdolnoscKredytowa;
         this.pensja = pensja;
+        this.konta = new ArrayList<>();
+    }
+    public List<Konto> getKonta() {
+        return konta;
     }
 
     public Integer getId() {
@@ -48,9 +57,8 @@ public class Klient extends Osoba {
                 '}'+ super.toString();
     }
 
-    //TODO
-    void zalozKonto(String typ){
-
+    void zalozKonto(String nazwa, double saldo, String typKonta, String numerKonta){
+        konta.add(new Konto(nazwa, saldo, typKonta, numerKonta));
     }
 
     //TODO
