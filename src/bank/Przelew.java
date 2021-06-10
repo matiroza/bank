@@ -4,13 +4,17 @@ public class Przelew {
     private String tytul;
     private String imieInazwisko;
     private String adres;
+    String numerKonta;
 
-    public Przelew(double kwota, String tytul, String imieInazwisko, String adres) {
+    public Przelew(double kwota, String tytul, String imieInazwisko, String adres, String numerKonta) {
         this.kwota = kwota;
         this.tytul = tytul;
         this.imieInazwisko = imieInazwisko;
         this.adres = adres;
+        this.numerKonta = numerKonta;
     }
+
+    public Przelew(){}
 
     public double getKwota() {
         return kwota;
@@ -43,4 +47,10 @@ public class Przelew {
     public void setAdres(String adres) {
         this.adres = adres;
     }
+
+    public void setNumerKonta(String numerKonta) {
+        this.numerKonta = numerKonta;
+    }
+
+    public String getNumerKonta() {return numerKonta; }
 }

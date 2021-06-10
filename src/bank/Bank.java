@@ -6,6 +6,9 @@ import java.util.*;
 public class Bank {
     private String name;
     private String adress;
+    private List<Klient> klienci;
+    private ArrayList<Konto> konta = new ArrayList<>();
+
 
     public List<Osoba> getOsoby() {
         return osoby;
@@ -22,6 +25,8 @@ public class Bank {
         this.adress = adress;
         this.osoby = new ArrayList<>();
     }
+
+    Bank(){}
 
     public void addOsoba(Osoba osoba){
         osoby.add(osoba);
@@ -41,6 +46,24 @@ public class Bank {
 
     public void setAdress(String adress) {
         this.adress = adress;
+    }
+
+    public List<Klient> getKlienci() {
+        return klienci;
+    }
+
+    public void addKlient(Klient klient){
+        klienci.add(klient);
+    }
+
+    public List<Konto> getKonta() {return konta; }
+
+    public void addKonto(Konto konto){
+        konta.add(konto);
+    }
+
+    public void showKonta() {
+
     }
 
     void printOsoby(){

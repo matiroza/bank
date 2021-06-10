@@ -2,11 +2,12 @@ package bank;
 
 import java.util.List;
 
-public class Pracownik {
+public class Pracownik extends Osoba{
     private int id;
     private double pensja;
 
-    public Pracownik(int id, double pensja) {
+    public Pracownik(String firstName, String lastName, String adress, String pesel, int id, double pensja) {
+        super(firstName, lastName, adress, pesel);
         this.id = id;
         this.pensja = pensja;
     }
