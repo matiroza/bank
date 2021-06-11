@@ -1,6 +1,8 @@
 package bank;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 public class Pracownik extends Osoba{
     private int id;
@@ -26,11 +28,6 @@ public class Pracownik extends Osoba{
 
     public void setPensja(double pensja) {
         this.pensja = pensja;
-    }
-
-    //TODO
-    void tworzenieRaportow(List<Klient> klienci){
-
     }
 
     //TODO

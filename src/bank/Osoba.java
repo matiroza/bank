@@ -13,6 +13,8 @@ public abstract class Osoba {
         this.pesel = pesel;
     }
 
+    public Osoba(){}
+
     public String getFirstName() {
         return firstName;
     }

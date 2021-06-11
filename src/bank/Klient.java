@@ -1,6 +1,11 @@
 package bank;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 import java.util.List;
 
@@ -9,13 +14,14 @@ import java.util.List;
 public class Klient extends Osoba {
     private Integer Id;
     private double pensja;
+    private ArrayList<Przelew> przelewy = new ArrayList<>();
 
 
-    public Klient(String firstName, String lastName, String adress, String pesel, Integer id, double pensja) {
+    public Klient(String firstName, String lastName, String adress, String pesel) {
         super(firstName, lastName, adress, pesel);
-        Id = id;
-        this.pensja = pensja;
     }
+
+    public Klient(){}
 
     public Integer getId() {
         return Id;
@@ -43,21 +49,23 @@ public class Klient extends Osoba {
                 '}'+ super.toString();
     }
 
-    //TODO
     Konto zalozKonto(String nazwa, double saldo, String typKonta, String numerKonta){
         Konto konto = new Konto(nazwa, saldo, typKonta, numerKonta);
 
         return konto;
     }
 
-    //TODO
     void sprawdzSaldo(Konto konto){
-
+        System.out.println("Obecne saldo " + konto.getSaldo());
     }
 
-    //TODO
-    void wyplataPieniedzy(double kwota){
-
+    void wyplataPieniedzy(double kwota, Konto konto){
+        double saldo = konto.getSaldo();
+        if(kwota >= saldo){
+            konto.addSaldo(-kwota);
+        } else {
+            System.out.println("Nie wystarczajaca ilosc srodkow");
+        }
     }
 
     //TODO
@@ -65,12 +73,17 @@ public class Klient extends Osoba {
 
     }
 
-    //TODO
-    void stworzRaport(java.util.Date Od,java.util.Date Do){
+    ArrayList<Przelew> stworzRaport(java.time.LocalDate Od, java.time.LocalDate Do){
+        ArrayList<Przelew> raport = new ArrayList<>();
+        for (int i = 0; i < przelewy.size(); i++){
+            if (przelewy.get(i).dataWykonania.isAfter(Od) && przelewy.get(i).dataWykonania.isBefore((Do))){
+                raport.add(przelewy.get(i));
+            }
+        }
 
+        return raport;
     }
 
-    //TODO
     Przelew zacznijPrzelew(){
         Scanner scan = new Scanner(System.in);
 
@@ -86,6 +99,11 @@ public class Klient extends Osoba {
         przelew.setImieInazwisko(scan.nextLine());
         System.out.println("Adres odbiorcy: ");
         przelew.setAdres(scan.nextLine());
+
+        LocalDate now = LocalDate.now();
+        przelew.setDataWykonania(now);
+
+        przelewy.add(przelew);
 
         return przelew;
     }

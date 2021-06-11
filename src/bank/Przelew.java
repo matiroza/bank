@@ -1,10 +1,11 @@
 package bank;
-public class Przelew {
+public class Przelew extends Konto {
     private double kwota;
     private String tytul;
     private String imieInazwisko;
     private String adres;
     String numerKonta;
+    java.time.LocalDate dataWykonania;
 
     public Przelew(double kwota, String tytul, String imieInazwisko, String adres, String numerKonta) {
         this.kwota = kwota;
@@ -53,4 +54,6 @@ public class Przelew {
     }
 
     public String getNumerKonta() {return numerKonta; }
+
+    public void setDataWykonania(java.time.LocalDate dataWykonania) {this.dataWykonania = dataWykonania; }
 }

@@ -7,18 +7,18 @@ public class Bank {
     private String name;
     private String adress;
     private List<Klient> klienci;
+    private ArrayList<Osoba> osoby = new ArrayList<>();
     private ArrayList<Konto> konta = new ArrayList<>();
 
 
-    public List<Osoba> getOsoby() {
+    public ArrayList<Osoba> getOsoby() {
         return osoby;
     }
 
-    public void setOsoby(List<Osoba> osoby) {
+    public void setOsoby(ArrayList<Osoba> osoby) {
         this.osoby = osoby;
     }
 
-    private List<Osoba> osoby;
 
     Bank(String name, String adress) {
         this.name = name;
@@ -56,11 +56,12 @@ public class Bank {
         klienci.add(klient);
     }
 
-    public List<Konto> getKonta() {return konta; }
+    public ArrayList<Konto> getKonta() {return konta; }
 
     public void addKonto(Konto konto){
         konta.add(konto);
     }
+
 
     public void showKonta() {
 

@@ -1,5 +1,6 @@
 package bank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Konto extends Bank{
@@ -94,21 +95,18 @@ public class Konto extends Bank{
         }
     }
 
-    //TODO
-    void wykonajPrzelew(Klient klient){
+    void wykonajPrzelew(Klient klient, Bank bank){
         Przelew przelew = klient.zacznijPrzelew();
 
         String konto = przelew.getNumerKonta();
-        System.out.println(konto);
-        System.out.println(getKonta().size());
+        System.out.println("Numer konta: " + konto);
 
-        for(int i = 0; i < getKonta().size(); i++){
-            System.out.println(getKonta().get(i).getNumerKonta());
-            if(getKonta().get(i).getNumerKonta().equals(konto)){
-                getKonta().get(i).addSaldo(przelew.getKwota());
+
+        for(int i = 0; i < bank.getKonta().size(); i++){
+            if(bank.getKonta().get(i).getNumerKonta().equals(konto)){
+                bank.getKonta().get(i).addSaldo(przelew.getKwota());
                 System.out.println("Przelew wykonany pomyslnie");
             }
         }
-
     }
 }
