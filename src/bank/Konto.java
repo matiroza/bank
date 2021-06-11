@@ -1,5 +1,6 @@
 package bank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Konto extends Bank{
@@ -7,7 +8,7 @@ public class Konto extends Bank{
     private double saldo;
     private String typKonta;
     private String numerKonta;
-
+    private ArrayList<Double> wnioskowane_kwoty = new ArrayList<>();
 
 
     public Konto(String nazwa, double saldo, String typKonta, String numerKonta) {
@@ -55,14 +56,11 @@ public class Konto extends Bank{
         saldo += kwota;
     }
 
-    Konto findKonto(String numerKonta, Bank bank){
-        Konto konto = new Konto();
-        for (int i = 0; i < bank.getKonta().size(); i++){
-            if (bank.getKonta().get(i).getNumerKonta() == numerKonta){
-                konto = bank.getKonta().get(i);
-            }
-        }
-        return konto;
+
+    void wniosekOpozyczke(double kwota){
+        wnioskowane_kwoty.add(kwota);
+        System.out.println("Wnioskowana kwota: " + kwota);
+        System.out.println("Wniosek został przesłany!");
     }
 
     void przewalutowanie(double kwota, String waluta, Konto konto){
@@ -95,20 +93,11 @@ public class Konto extends Bank{
     }
 
     //TODO
-    void wykonajPrzelew(Klient klient){
+    void wykonajPrzelew(Klient klient) {
         Przelew przelew = klient.zacznijPrzelew();
 
         String konto = przelew.getNumerKonta();
         System.out.println(konto);
-        System.out.println(getKonta().size());
-
-        for(int i = 0; i < getKonta().size(); i++){
-            System.out.println(getKonta().get(i).getNumerKonta());
-            if(getKonta().get(i).getNumerKonta().equals(konto)){
-                getKonta().get(i).addSaldo(przelew.getKwota());
-                System.out.println("Przelew wykonany pomyslnie");
-            }
-        }
-
     }
+
 }

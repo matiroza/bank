@@ -1,15 +1,14 @@
 package bank;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-
-import java.util.List;
 
 //usunąc metode stworzKonto z diagramuKlas
 
 public class Klient extends Osoba {
     private Integer Id;
     private double pensja;
-
+    private ArrayList<Konto> lista_kont= new ArrayList<Konto>();
 
     public Klient(String firstName, String lastName, String adress, String pesel, Integer id, double pensja) {
         super(firstName, lastName, adress, pesel);
@@ -33,7 +32,7 @@ public class Klient extends Osoba {
         this.pensja = pensja;
     }
 
-
+    public ArrayList<Konto> getListaKont() { return lista_kont; }
 
     @Override
     public String toString() {
@@ -44,10 +43,9 @@ public class Klient extends Osoba {
     }
 
     //TODO
-    Konto zalozKonto(String nazwa, double saldo, String typKonta, String numerKonta){
-        Konto konto = new Konto(nazwa, saldo, typKonta, numerKonta);
-
-        return konto;
+    void zalozKonto(String nazwa, double saldo, String typKonta, String numerKonta){
+        lista_kont.add(new Konto(nazwa, saldo, typKonta, numerKonta));
+        System.out.println(lista_kont);
     }
 
     //TODO
@@ -56,12 +54,7 @@ public class Klient extends Osoba {
     }
 
     //TODO
-    void wyplataPieniedzy(double kwota){
-
-    }
-
-    //TODO
-    void wniosekOpozyczke(double kwota){
+    void wyplataPieniedzy(double kwota, Konto konto){
 
     }
 
@@ -90,9 +83,16 @@ public class Klient extends Osoba {
         return przelew;
     }
 
-    //TODO
-    void wybierzKonto(String nazwa){
 
+    //wybierzKonto
+    Konto znajdz_konto(String nazwa){
+        Konto konto = null;
+        for(int i=0; i<lista_kont.size(); i++){
+            if(nazwa.equals(lista_kont.get(i).getNazwa())) {
+                konto = lista_kont.get(i);
+            }
+        }
+        return konto;
     }
 
 

@@ -6,7 +6,6 @@ public class Source {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
 
-
         Bank PKO= new Bank("ING", "Różana 5");
         Klient klient1 = new Klient(
                 "Mateusz",
@@ -26,12 +25,16 @@ public class Source {
         PKO.addOsoba(klient1);
         PKO.addOsoba(klient2);
 
-        PKO.addKonto(klient1.zalozKonto("PKO - Zwykle", 10000, "zwykle", "6546456949874"));
-        PKO.addKonto(klient2.zalozKonto("PKO - Zwykle", 10000, "zwykle", "0000"));
+        klient1.zalozKonto("konto1", 3000,"walutowe","3242352345345");
+        //System.out.println(klient1.getListaKont());
 
-        PKO.getKonta().get(0).wykonajPrzelew(klient1);
+        //PKO.addKonto(klient2.zalozKonto("PKO - Zwykle", 10000, "zwykle", "0000"));
 
-        System.out.println(PKO.getKonta().get(1).getSaldo());
+        //PKO.getKonta().get(0).wykonajPrzelew(klient1);
+
+        //System.out.println(PKO.getKonta().get(1).getSaldo());
+
+
 
 
 
