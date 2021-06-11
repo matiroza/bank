@@ -12,7 +12,6 @@ public class Klient extends Osoba {
     private double pensja;
     private List<Konto> konta;
 
-
     public Klient(String firstName, String lastName, String adress, String pesel, Integer id, double zdolnoscKredytowa, double pensja) {
         super(firstName, lastName, adress, pesel);
         Id = id;
@@ -75,9 +74,12 @@ public class Klient extends Osoba {
 
     }
 
-    //TODO
-    void stworzRaport(java.util.Date Od,java.util.Date Do){
-
+    //TODO java.util.Date Od,java.util.Date Do
+    void stworzRaport(){
+        System.out.println("RAPORT");
+        for(Konto konto: this.getKonta()) {
+            System.out.println("Konto: " + konto.getNazwa());
+        }
     }
 
     //TODO

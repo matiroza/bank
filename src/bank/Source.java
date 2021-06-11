@@ -1,7 +1,10 @@
 package bank;
+import java.util.Scanner;
+
 
 public class Source {
     public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
         Bank PKO= new Bank("ING", "Różana 5");
         Klient klient1 = new Klient(
                 "Mateusz",
@@ -26,5 +29,13 @@ public class Source {
         klient1.zalozKonto("konto 1", 34234, "walutowe", "xys");
         System.out.println(klient1.getKonta().get(0).getNazwa());
         klient1.sprawdzSaldo(klient1.getKonta().get(0));
+        klient1.stworzRaport();
+
+
+
+        }
+
+
+
+
     }
-}
