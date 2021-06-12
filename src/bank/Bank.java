@@ -50,6 +50,10 @@ public class Bank {
 
     List<Klient> getKlienci(){ return klienci; }
 
+    public List<Pracownik> getPracownicy() {
+        return pracownicy;
+    }
+
     @Override
     public String toString() {
         printOsoby();

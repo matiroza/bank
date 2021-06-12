@@ -16,6 +16,8 @@ public class Konto {
         this.waluta = waluta;
     }
 
+    public Konto(){}
+
     public String getWaluta(){
         return waluta;
     }
