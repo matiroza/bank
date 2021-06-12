@@ -1,10 +1,13 @@
 package bank;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Source {
     public static Scanner scanner = new Scanner(System.in);
 
-    public static void obslugaKonta(Konto konto) {
+    public static void obslugaKonta(Konto konto, Klient klient) {
         boolean loop = true;
 
         while (loop) {
@@ -13,8 +16,8 @@ public class Source {
             System.out.println("3. wykonaj przelew ");
             System.out.println("4. wpłac środki");
             System.out.println("5. wypłata pieniędzy");
-            System.out.println("6. Weź pożyczke");
-            System.out.println("7. wyjdz");
+            System.out.println("6. weź pożyczke");
+            System.out.println("8. wyjdz");
 
             int choose = scanner.nextInt();
 
@@ -23,7 +26,7 @@ public class Source {
                     loop = false;
                     break;
                 case 1:
-                    System.out.println(konto.getSaldo() + " " + konto.getWaluta());
+                    System.out.println(Math.round(konto.getSaldo() * 1000) / 1000 + " " + konto.getWaluta());
                     break;
                 case 2:
                     System.out.println("Dostępne waluty: ");
@@ -33,13 +36,10 @@ public class Source {
                     System.out.println("CHF");
                     System.out.println("Podaj walute");
                     String walutaa = scanner.next();
-                    scanner.nextLine();
-                    System.out.println("Podaj kwote");
-                    double kwota = Double.parseDouble(scanner.nextLine());
-                    konto.przewalutowanie(kwota, walutaa, konto);
+                    konto.przewalutowanie(konto.getSaldo(), walutaa, konto);
                     break;
                 case 3:
-                    konto.wykonajPrzelew();
+                    konto.wykonajPrzelew(klient);
 
                     break;
                 case 4:
@@ -54,6 +54,7 @@ public class Source {
                     break;
                 case 6:
                     konto.wezPozyczke();
+                    break;
             }
         }
     }
@@ -63,26 +64,38 @@ public class Source {
         boolean loop = true;
 
         while (loop) {
-            System.out.println("1. ror");
-            System.out.println("2. walutowe");
-            System.out.println("3. oszczednosciowe");
-            System.out.println("4. wyjdz");
+            System.out.println("1. konto 1");
+            System.out.println("2. konto 2");
+            System.out.println("3. konto 3");
+            System.out.println("4. stwórz raport");
+            System.out.println("5. wyjdz");
 
             int choose = scanner.nextInt();
 
             switch (choose) {
-                case 1:
-                    obslugaKonta(klient.getKonta().get(0));
-                    break;
-                case 2:
-                    obslugaKonta(klient.getKonta().get(1));
-                    break;
-                case 3:
-                    obslugaKonta(klient.getKonta().get(2));
-                    break;
-                case 4:
+                case 5:
                     loop = false;
                     break;
+                case 1:
+                    obslugaKonta(klient.getKonta().get(0), klient);
+                    break;
+                case 2:
+                    obslugaKonta(klient.getKonta().get(1), klient);
+                    break;
+                case 3:
+                    obslugaKonta(klient.getKonta().get(2), klient);
+                    break;
+                case 4:
+                    System.out.println("Podaj date od-do dla której chcesz stworzyć raport");
+
+                    java.time.LocalDate odd = LocalDate.MIN;
+                    java.time.LocalDate doo = LocalDate.MAX;
+
+                    //klient.stworzRaport(odd,doo);
+
+
+                    break;
+
             }
         }
     }
@@ -114,10 +127,10 @@ public class Source {
 
         for (int i = 0; i < bank.getKlienci().size(); i++) {
             if (bank.getKlienci().get(i).getFirstName().equals(imie) && bank.getKlienci().get(i).getLastName().equals(nazwisko)) {
-                System.out.println("Witaj " + bank.getKlienci().get(i).getFirstName() + " " +bank.getKlienci().get(i).getLastName() + "!");
+                System.out.println("Witaj " + bank.getKlienci().get(i).getFirstName() + " " + bank.getKlienci().get(i).getLastName() + "!");
                 Klient klient = bank.getKlienci().get(i);
                 System.out.println(klient);
-                System.out.println("Liczba kont: " +klient.getKonta().size());
+                System.out.println("Liczba kont: " + klient.getKonta().size());
                 boolean loop = true;
                 while (loop) {
                     System.out.println("1. Załóż nowe konto");
@@ -137,7 +150,7 @@ public class Source {
                             String numer = scan.nextLine();
                             System.out.println("Podaj walute");
                             String waluta = scan.nextLine();
-                            klient.zalozKonto(kwota,typKonta, numer,waluta);
+                            klient.zalozKonto(kwota, typKonta, numer, waluta);
                             break;
                         case 2:
                             System.out.println("Posiadasz " + klient.getKonta().size() + " konta");
@@ -210,10 +223,9 @@ public class Source {
         banki.get(1).addOsoba(klient2);
 
 
-        klient1.zalozKonto( 100, "walutowe", "997", "PLN");
-        klient1.zalozKonto( 50000, "zwykle", "998", "PLN");
-        klient2.zalozKonto( 50, "zwykle234543", "999","PLN");
-
+        klient1.zalozKonto(100, "walutowe", "997", "PLN");
+        klient1.zalozKonto(50000, "zwykle", "998", "PLN");
+        klient2.zalozKonto(50, "zwykle234543", "999", "PLN");
 
 
         boolean loop = true;

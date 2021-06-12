@@ -94,7 +94,7 @@ public class Konto {
         }
     }
 
-    void wykonajPrzelew() {
+    void wykonajPrzelew(Klient klient) {
         Przelew p = Klient.zacznijPrzelew();
         String numer = p.getNumerKonta();
         for (int i = 0; i < Bank.getOsoby().size(); i++) {
@@ -106,6 +106,7 @@ public class Konto {
                             System.out.println("Numer sie zgadza, przelewamy");
                             konto.addSaldo(p.getKwota());
                             addSaldo(-p.getKwota());
+                            klient.przelewy.add(p);
                         }else {
                             System.out.println("Brak środków na koncie");
                         }

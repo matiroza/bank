@@ -10,7 +10,7 @@ public class Klient extends Osoba {
     private double zdolnoscKredytowa;
     private double pensja;
     private List<Konto> konta;
-    private ArrayList<Przelew> przelewy = new ArrayList<>();
+    public ArrayList<Przelew> przelewy = new ArrayList<>();
 
     public Klient(String firstName, String lastName, String adress, String pesel, double pensja) {
         super(firstName, lastName, adress, pesel);
@@ -58,14 +58,6 @@ public class Klient extends Osoba {
         System.out.println("Saldo " + "\"" + konto.getNazwa() + "\"" + ": " + konto.getSaldo() + " zł");
     }
 
-    void wyplataPieniedzy(double kwota, Konto konto){
-        double saldo = konto.getSaldo();
-        if(kwota >= saldo){
-            konto.addSaldo(-kwota);
-        } else {
-            System.out.println("Nie wystarczajaca ilosc srodkow");
-        }
-    }
 
     ArrayList<Przelew> stworzRaport(java.time.LocalDate Od, java.time.LocalDate Do){
         ArrayList<Przelew> raport = new ArrayList<>();
@@ -92,7 +84,6 @@ public class Klient extends Osoba {
         String imie_i_nazwisko = scan.nextLine();
         System.out.println("Adres odbiorcy: ");
         String adres = scan.nextLine();
-
         return new Przelew(kwota, numer, tytul, imie_i_nazwisko, adres);
     }
 
