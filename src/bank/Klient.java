@@ -15,7 +15,7 @@ public class Klient extends Osoba {
     private Integer Id;
     private double pensja;
     private ArrayList<Przelew> przelewy = new ArrayList<>();
-
+    private ArrayList<Konto> konta = new ArrayList<>();
 
     public Klient(String firstName, String lastName, String adress, String pesel) {
         super(firstName, lastName, adress, pesel);
@@ -51,6 +51,7 @@ public class Klient extends Osoba {
 
     Konto zalozKonto(String nazwa, double saldo, String typKonta, String numerKonta){
         Konto konto = new Konto(nazwa, saldo, typKonta, numerKonta);
+        konta.add(konto);
 
         return konto;
     }
@@ -90,22 +91,30 @@ public class Klient extends Osoba {
         Przelew przelew = new Przelew();
 
         System.out.println("Podaj kwotę: ");
-        przelew.setKwota(Integer.valueOf(scan.nextLine()));
-        System.out.println("Podaj numer konta: ");
-        przelew.setNumerKonta(scan.nextLine());
-        System.out.println("Tytul przelewu: ");
-        przelew.setTytul(scan.nextLine());
-        System.out.println("Nazwa odbiorcy: ");
-        przelew.setImieInazwisko(scan.nextLine());
-        System.out.println("Adres odbiorcy: ");
-        przelew.setAdres(scan.nextLine());
+        double kwota = Double.valueOf(scan.nextLine());
+        if (kwota <= konta.get(0).getSaldo()){
+            System.out.println("Brak wystarczajacych srodkow");
+            return przelew;
+        } else {
+            konta.get(0).setSaldo(konta.get(0).getSaldo() - kwota);
+            przelew.setKwota(Integer.valueOf(scan.nextLine()));
+            System.out.println("Podaj numer konta: ");
+            przelew.setNumerKonta(scan.nextLine());
+            System.out.println("Tytul przelewu: ");
+            przelew.setTytul(scan.nextLine());
+            System.out.println("Nazwa odbiorcy: ");
+            przelew.setImieInazwisko(scan.nextLine());
+            System.out.println("Adres odbiorcy: ");
+            przelew.setAdres(scan.nextLine());
 
-        LocalDate now = LocalDate.now();
-        przelew.setDataWykonania(now);
+            LocalDate now = LocalDate.now();
+            przelew.setDataWykonania(now);
 
-        przelewy.add(przelew);
+            przelewy.add(przelew);
 
-        return przelew;
+            return przelew;
+        }
+
     }
 
     //TODO

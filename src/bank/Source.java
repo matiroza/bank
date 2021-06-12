@@ -40,8 +40,8 @@ public class Source {
         PKO1.wykonajPrzelew(klient1, PKO);
         System.out.println(PKO2.getSaldo());
 */
+
         Klient klient = new Klient();
-        Klient klient1 = new Klient();
         Konto PKO1 = new Konto("PKO - Zwykle", 10000, "zwykle", "654654564654");
         Konto PKO2 = new Konto("PKO - Zwykle", 10000, "zwykle", "0000");
         PKO.addKonto(PKO2);
@@ -66,9 +66,9 @@ public class Source {
                 String adres = scan.nextLine();
                 System.out.println("Podaj PESEL: ");
                 String pesel = scan.nextLine();
-                Klient klient2 = new Klient(imie, nazwisko, adres, pesel);
 
-                PKO.addOsoba(klient);
+
+                PKO.addKlient(klient);
 
                 System.out.println("Konto zwykle, czy walutowe?");
                 String wybor = scan.nextLine();

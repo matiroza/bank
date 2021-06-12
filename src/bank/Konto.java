@@ -3,7 +3,7 @@ package bank;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Konto extends Bank{
+public class Konto extends Klient{
     private String nazwa;
     private double saldo;
     private String typKonta;
@@ -54,16 +54,6 @@ public class Konto extends Bank{
 
     public void addSaldo(double kwota){
         saldo += kwota;
-    }
-
-    Konto findKonto(String numerKonta, Bank bank){
-        Konto konto = new Konto();
-        for (int i = 0; i < bank.getKonta().size(); i++){
-            if (bank.getKonta().get(i).getNumerKonta() == numerKonta){
-                konto = bank.getKonta().get(i);
-            }
-        }
-        return konto;
     }
 
     void przewalutowanie(double kwota, String waluta, Konto konto){
