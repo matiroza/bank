@@ -5,13 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-//usunąc metode stworzKonto z diagramuKlas
-
 public class Klient extends Osoba {
     static private Integer Id = 0;
     private double zdolnoscKredytowa;
     private double pensja;
     private List<Konto> konta;
+    private ArrayList<Przelew> przelewy = new ArrayList<>();
 
     public Klient(String firstName, String lastName, String adress, String pesel, double pensja) {
         super(firstName, lastName, adress, pesel);
@@ -55,23 +54,28 @@ public class Klient extends Osoba {
     void zalozKonto(double saldo, String typKonta, String numerKonta, String waluta){
         konta.add(new Konto(saldo, typKonta, numerKonta, waluta));
     }
-
     void sprawdzSaldo(Konto konto){
         System.out.println("Saldo " + "\"" + konto.getNazwa() + "\"" + ": " + konto.getSaldo() + " zł");
     }
 
-    //TODO
-    void wyplataPieniedzy(double kwota){
-
+    void wyplataPieniedzy(double kwota, Konto konto){
+        double saldo = konto.getSaldo();
+        if(kwota >= saldo){
+            konto.addSaldo(-kwota);
+        } else {
+            System.out.println("Nie wystarczajaca ilosc srodkow");
+        }
     }
 
-
-    //TODO java.util.Date Od,java.util.Date Do
-    void stworzRaport(){
-        System.out.println("RAPORT");
-        for(Konto konto: this.getKonta()) {
-            System.out.println("Konto: " + konto.getNazwa());
+    ArrayList<Przelew> stworzRaport(java.time.LocalDate Od, java.time.LocalDate Do){
+        ArrayList<Przelew> raport = new ArrayList<>();
+        for (int i = 0; i < przelewy.size(); i++){
+            if (przelewy.get(i).dataWykonania.isAfter(Od) && przelewy.get(i).dataWykonania.isBefore((Do))){
+                raport.add(przelewy.get(i));
+            }
         }
+
+        return raport;
     }
 
     static Przelew zacznijPrzelew() {
@@ -92,7 +96,7 @@ public class Klient extends Osoba {
         return new Przelew(kwota, numer, tytul, imie_i_nazwisko, adres);
     }
 
-     static Pozyczka wniosekOpozyczke(double kwota){
+    static Pozyczka wniosekOpozyczke(double kwota){
         Date odd = new Date();
         Scanner scan2 = new Scanner(System.in);
         System.out.println("Podaj na ile miesięcy chcesz wziąć pożyczke");

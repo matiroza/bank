@@ -1,7 +1,5 @@
 package bank;
-
 import java.util.*;
-
 
 public class Source {
     public static Scanner scanner = new Scanner(System.in);
@@ -56,7 +54,6 @@ public class Source {
                     break;
                 case 6:
                     konto.wezPozyczke();
-
             }
         }
     }
@@ -101,9 +98,12 @@ public class Source {
         System.out.println("Podaj PESEL: ");
         String pesel = scan.nextLine();
         System.out.println("Podaj miesięczne zarobki: ");
+
         double pensja = scan.nextDouble();
+
         bank.addOsoba(new Klient(imie, nazwisko, adres, pesel, pensja));
         System.out.println("Gratulacje! Założyłeś nowe konto w banku " + bank.getName());
+
     }
 
     static void stary_klient_menu(Bank bank) {
@@ -164,8 +164,8 @@ public class Source {
 
         System.out.println("---------------");
         System.out.println("Wybierz bank: ");
-        for (int i = 0; i < banki.size(); i++) {
-            System.out.println(banki.get(i).getName());
+        for (Bank value : banki) {
+            System.out.println(value.getName());
         }
         String nazwa_banku = scanner.nextLine();
 
@@ -196,6 +196,7 @@ public class Source {
                 "999888777666",
                 5000
         );
+
         Pracownik prac = new Pracownik(
                 "Mathew",
                 "Różalaski",
@@ -208,24 +209,15 @@ public class Source {
         banki.get(0).addOsoba(klient1);
         banki.get(1).addOsoba(klient2);
 
-        //System.out.println(PKO);
-        klient1.zalozKonto( 100, "walutowe", "xys", "PLN");
-        klient1.zalozKonto( 50000, "zwykle", "sfdsdaf", "EUR");
+
+        klient1.zalozKonto( 100, "walutowe", "997", "PLN");
+        klient1.zalozKonto( 50000, "zwykle", "998", "PLN");
         klient2.zalozKonto( 50, "zwykle234543", "999","PLN");
-        //System.out.println(klient1.getKonta().get(0));
-        //System.out.println(PKO.getOsoby().get(2).getClass().getSimpleName()); Pracownik
-        //System.out.println(PKO.getOsoby().get(1));
-        //klient1.getKonta().get(0).wykonajPrzelew();
-        //System.out.println(klient1.getKonta().get(0).getSaldo());
 
-
-
-        //int choose = scanner.nextInt();*/
 
 
         boolean loop = true;
         do {
-
             Bank wybrany_bank = wybierz_bank(banki);
 
             System.out.println("1. Jestem nowym klientem");
@@ -235,7 +227,6 @@ public class Source {
 
             switch (choose) {
                 case 1:
-                    //System.out.println();
                     nowy_klient_menu(wybrany_bank);
                     break;
                 case 2:
@@ -245,10 +236,8 @@ public class Source {
                     loop = false;
                     break;
             }
-            //wybrany_bank.printOsoby();
 
         } while (loop);
-
 
     }
 }

@@ -28,11 +28,6 @@ public class Pracownik extends Osoba{
         this.pensja = pensja;
     }
 
-    //TODO
-    void tworzenieRaportow(List<Klient> klienci){
-
-    }
-
     boolean zatwierdzPozyczke(){
         return true;
     };

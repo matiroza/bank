@@ -17,6 +17,8 @@ public class Konto {
         this.waluta = waluta;
     }
 
+    public Konto() {}
+
     public String getWaluta(){
         return waluta;
     }
@@ -62,7 +64,6 @@ public class Konto {
         else System.out.println("Brak wystarczajacch srodkow");
     }
 
-    //TODO
     void przewalutowanie(double kwota, String waluta, Konto konto) {
         double doWyplaty;
         System.out.println(waluta);
@@ -93,18 +94,21 @@ public class Konto {
         }
     }
 
-    //TODO
     void wykonajPrzelew() {
         Przelew p = Klient.zacznijPrzelew();
         String numer = p.getNumerKonta();
         for (int i = 0; i < Bank.getOsoby().size(); i++) {
             if (Bank.getOsoby().get(i).getClass().getSimpleName().equals("Klient")) {
                 List<Konto> konta = ((Klient) Bank.getOsoby().get(i)).getKonta();
-                int ile_kont = konta.size();
                 for (Konto konto : konta) {
                     if (konto.getNumerKonta().equals(numer)) {
-                        System.out.println("Numer sie zgadza, przelewamy");
-                        konto.addSaldo(p.getKwota());
+                        if(getSaldo()>=p.getKwota()) {
+                            System.out.println("Numer sie zgadza, przelewamy");
+                            konto.addSaldo(p.getKwota());
+                            addSaldo(-p.getKwota());
+                        }else {
+                            System.out.println("Brak środków na koncie");
+                        }
                     }
                 }
             }
@@ -112,6 +116,7 @@ public class Konto {
     }
 
     void wezPozyczke(){
+        System.out.println("Podaj kwote pożyczki");
         Scanner scan = new Scanner(System.in);
         double kwota =  scan.nextDouble();
         Pozyczka p = Klient.wniosekOpozyczke(kwota);
@@ -123,11 +128,9 @@ public class Konto {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Konto{");
-        sb.append("nazwa='").append(nazwa).append('\'');
         sb.append(", saldo=").append(saldo);
         sb.append(", typKonta='").append(typKonta).append('\'');
         sb.append(", numerKonta='").append(numerKonta).append('\'');
-        sb.append('}');
         return sb.toString();
     }
 }

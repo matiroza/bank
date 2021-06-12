@@ -5,6 +5,7 @@ public class Przelew {
     private String imieInazwisko;
     private String adres;
     private String numerKonta;
+    java.time.LocalDate dataWykonania;
 
 
     public Przelew(double kwota, String numer,String tytul, String imieInazwisko, String adres) {
