@@ -29,16 +29,25 @@ public class Source {
         String imie = scan.nextLine();
         String nazwisko = scan.nextLine();
         System.out.println("Wybierz konto: ");
+        System.out.println(bank.getKlienci().get(0));
+        System.out.println(bank.getKlienci().get(1));
 
+        /*
         for(int i=0;i<bank.getKlienci().size();i++) {
             if(bank.getKlienci().get(i).getFirstName().equals(imie) && bank.getKlienci().get(i).getLastName().equals(nazwisko)){
                 System.out.println("Witaj " + bank.getKlienci().get(i).getFirstName() + bank.getKlienci().get(i).getLastName());
-                bank.getKlienci().get(i).wybierzKonto();
+                //bank.getKlienci().get(i).wybierzKonto();
+                switch(klient)
+                1. wykon
             }
             else{
                 System.out.println("Niestety brak klienta w bazie");
             }
+
+
         }
+*/
+
     }
 
     static Bank wybierz_bank(List<Bank> banki){
@@ -86,6 +95,8 @@ public class Source {
                 23,
                 1
                 );
+        //klient1.zalozKonto("konto 1", 100, "walutowe", "xys");
+        //klient1.getKonta().get(0).wykonajPrzelew();
 /*
         PKO.addOsoba(klient1);
         PKO.addOsoba(klient2);
@@ -97,7 +108,7 @@ public class Source {
         //System.out.println(klient1.getKonta().get(0));
         //System.out.println(PKO.getOsoby().get(2).getClass().getSimpleName()); Pracownik
         //System.out.println(PKO.getOsoby().get(1));
-        //klient1.getKonta().get(0).wykonajPrzelew();
+
         //System.out.println(klient1.getKonta().get(0).getSaldo());
 
         */
@@ -132,13 +143,6 @@ public class Source {
             //wybrany_bank.printOsoby();
 
         }while(loop == true);
-
-
-
-
-
-        
-
 
         /*
 

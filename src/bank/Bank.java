@@ -28,6 +28,7 @@ public class Bank {
         osoby.add(osoba);
         if(osoba.getClass().getSimpleName().equals("Klient")) klienci.add((Klient)osoba);
         else pracownicy.add((Pracownik)osoba);
+
     }
 
     public String getName() {

@@ -97,7 +97,7 @@ public class Klient extends Osoba {
     }
 
     //TODO
-    Konto wybierzKonto(){
+    Konto wybierzKonto() {
         System.out.println("Dostępne konta: ");
         for(int i=0;i<getKonta().size();i++){
             System.out.println(getKonta().get(i));

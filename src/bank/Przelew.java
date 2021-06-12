@@ -46,6 +46,7 @@ public class Przelew {
     public void setAdres(String adres) {
         this.adres = adres;
     }
+
     public String getNumerKonta() { return numerKonta; }
 
     public void setNumerKonta(String numerKonta) { this.numerKonta = numerKonta; }
