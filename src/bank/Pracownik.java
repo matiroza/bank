@@ -33,7 +33,6 @@ public class Pracownik extends Osoba{
 
     }
 
-    //TODO
     boolean zatwierdzPozyczke(){
         return true;
     };

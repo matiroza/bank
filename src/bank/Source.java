@@ -1,14 +1,12 @@
 package bank;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Source {
     public static Scanner scanner = new Scanner(System.in);
 
-    public static <dobule> void obslugaKonta(Konto konto) {
+    public static void obslugaKonta(Konto konto) {
         boolean loop = true;
 
         while (loop) {
@@ -17,12 +15,13 @@ public class Source {
             System.out.println("3. wykonaj przelew ");
             System.out.println("4. wpłac środki");
             System.out.println("5. wypłata pieniędzy");
-            System.out.println("6. wyjdz");
+            System.out.println("6. Weź pożyczke");
+            System.out.println("7. wyjdz");
 
             int choose = scanner.nextInt();
 
             switch (choose) {
-                case 6:
+                case 7:
                     loop = false;
                     break;
                 case 1:
@@ -35,13 +34,15 @@ public class Source {
                     System.out.print("GBP, ");
                     System.out.println("CHF");
                     System.out.println("Podaj walute");
-                    String walutaa = scanner.nextLine();
+                    String walutaa = scanner.next();
                     scanner.nextLine();
                     System.out.println("Podaj kwote");
                     double kwota = Double.parseDouble(scanner.nextLine());
                     konto.przewalutowanie(kwota, walutaa, konto);
                     break;
                 case 3:
+                    konto.wykonajPrzelew();
+
                     break;
                 case 4:
                     System.out.println("Podaj kwote do wpłaty");
@@ -53,6 +54,8 @@ public class Source {
                     double kwota3 = scanner.nextDouble();
                     konto.wyplac(kwota3);
                     break;
+                case 6:
+                    konto.wezPozyczke();
 
             }
         }
@@ -108,14 +111,13 @@ public class Source {
         System.out.println("Podaj imie i nazwisko");
         String imie = scan.nextLine();
         String nazwisko = scan.nextLine();
-        System.out.println("Wybierz konto: ");
 
         for (int i = 0; i < bank.getKlienci().size(); i++) {
             if (bank.getKlienci().get(i).getFirstName().equals(imie) && bank.getKlienci().get(i).getLastName().equals(nazwisko)) {
                 System.out.println("Witaj " + bank.getKlienci().get(i).getFirstName() + " " +bank.getKlienci().get(i).getLastName() + "!");
                 Klient klient = bank.getKlienci().get(i);
                 System.out.println(klient);
-                System.out.println(klient.getKonta().size());
+                System.out.println("Liczba kont: " +klient.getKonta().size());
                 boolean loop = true;
                 while (loop) {
                     System.out.println("1. Załóż nowe konto");
@@ -138,6 +140,7 @@ public class Source {
                             klient.zalozKonto(kwota,typKonta, numer,waluta);
                             break;
                         case 2:
+                            System.out.println("Posiadasz " + klient.getKonta().size() + " konta");
                             for (int j = 0; j < klient.getKonta().size(); j++) {
                                 System.out.println(klient.getKonta().get(j).toString());
                             }
@@ -184,14 +187,14 @@ public class Source {
                 "roza",
                 "ulica 1",
                 "999888777666",
-                1
+                10000
         );
         Klient klient2 = new Klient(
                 "Mati",
                 "Róża",
                 "ulica 2",
                 "999888777666",
-                2
+                5000
         );
         Pracownik prac = new Pracownik(
                 "Mathew",
@@ -199,16 +202,16 @@ public class Source {
                 "ulica 69",
                 "666",
                 23,
-                1
+                4000
         );
 
         banki.get(0).addOsoba(klient1);
-        banki.get(1).addOsoba(klient1);
+        banki.get(1).addOsoba(klient2);
 
         //System.out.println(PKO);
         klient1.zalozKonto( 100, "walutowe", "xys", "PLN");
         klient1.zalozKonto( 50000, "zwykle", "sfdsdaf", "EUR");
-        klient2.zalozKonto( 50, "zwykle234543", "sfd342sda34f","PLN");
+        klient2.zalozKonto( 50, "zwykle234543", "999","PLN");
         //System.out.println(klient1.getKonta().get(0));
         //System.out.println(PKO.getOsoby().get(2).getClass().getSimpleName()); Pracownik
         //System.out.println(PKO.getOsoby().get(1));

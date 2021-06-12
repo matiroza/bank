@@ -58,8 +58,8 @@ public class Pozyczka {
         this.rata = rata;
     }
 
-    //TODO
-    void pobierzRata(){
-
+    void pobierzRata(Konto konto){
+        if(konto.getSaldo()-getRata()>=0)
+            konto.setSaldo(konto.getSaldo() - getRata());
     }
 }

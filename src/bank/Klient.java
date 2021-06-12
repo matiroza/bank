@@ -1,6 +1,7 @@
 package bank;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,10 +65,6 @@ public class Klient extends Osoba {
 
     }
 
-    //TODO
-    void wniosekOpozyczke(double kwota){
-
-    }
 
     //TODO java.util.Date Od,java.util.Date Do
     void stworzRaport(){
@@ -95,13 +92,32 @@ public class Klient extends Osoba {
         return new Przelew(kwota, numer, tytul, imie_i_nazwisko, adres);
     }
 
-    //TODO
-    Konto wybierzKonto(){
+     static Pozyczka wniosekOpozyczke(double kwota){
+        Date odd = new Date();
+        Scanner scan2 = new Scanner(System.in);
+        System.out.println("Podaj na ile miesięcy chcesz wziąć pożyczke");
+        int miesiecy = scan2.nextInt();
+        if(kwota/(miesiecy*5000) < 10) {
+            int rok = miesiecy / 12;
+            int miesiac = miesiecy - rok * 12;
+            Date doo = new Date(121 + rok, miesiac, 1);
+            double rata = kwota/miesiecy;
+
+            System.out.println("Właśnie wziąłęś pożyczke na " + kwota
+                    + " z ratą " + Math.round(rata*100)/100 + " na " + rok + " rok i " + miesiac + " miesięcy" );
+            return new Pozyczka(odd, doo, kwota, 5., rata);
+        }else {
+            System.out.println("Niestety nie masz takiej zdolnoscij kredytowej!");
+            System.out.println("Weź niższą pożyczkę");
+            return new Pozyczka(odd, odd, 0, 0, 0);
+        }
+    }
+
+    void wybierzKonto(){
         System.out.println("Dostępne konta: ");
         for(int i=0;i<getKonta().size();i++){
             System.out.println(getKonta().get(i));
         }
-        return getKonta().get(0);
     }
 }
 

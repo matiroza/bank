@@ -1,6 +1,7 @@
 package bank;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Konto {
     private String nazwa;
@@ -100,16 +101,22 @@ public class Konto {
             if (Bank.getOsoby().get(i).getClass().getSimpleName().equals("Klient")) {
                 List<Konto> konta = ((Klient) Bank.getOsoby().get(i)).getKonta();
                 int ile_kont = konta.size();
-                for (int j = 0; j < ile_kont; j++) {
-                    if (konta.get(j).getNumerKonta().equals(numer)) {
+                for (Konto konto : konta) {
+                    if (konto.getNumerKonta().equals(numer)) {
                         System.out.println("Numer sie zgadza, przelewamy");
-                        konta.get(j).addSaldo(p.getKwota());
+                        konto.addSaldo(p.getKwota());
                     }
                 }
             }
-
         }
+    }
 
+    void wezPozyczke(){
+        Scanner scan = new Scanner(System.in);
+        double kwota =  scan.nextDouble();
+        Pozyczka p = Klient.wniosekOpozyczke(kwota);
+        this.setSaldo(p.getKwota());
+        p.pobierzRata(this);
 
     }
 
