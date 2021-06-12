@@ -6,16 +6,17 @@ import java.util.*;
 public class Bank {
     private String name;
     private String adress;
+    static private List<Osoba> osoby;
+    private List<Klient> klienci = new ArrayList<>();
+    private List<Pracownik> pracownicy = new ArrayList<>();
 
-    public List<Osoba> getOsoby() {
+    static public List<Osoba> getOsoby() {
         return osoby;
     }
 
     public void setOsoby(List<Osoba> osoby) {
         this.osoby = osoby;
     }
-
-    private List<Osoba> osoby;
 
     Bank(String name, String adress) {
         this.name = name;
@@ -25,6 +26,8 @@ public class Bank {
 
     public void addOsoba(Osoba osoba){
         osoby.add(osoba);
+        if(osoba.getClass().getSimpleName().equals("Klient")) klienci.add((Klient)osoba);
+        else pracownicy.add((Pracownik)osoba);
     }
 
     public String getName() {
@@ -44,6 +47,8 @@ public class Bank {
     void printOsoby(){
         for(Osoba osoba : osoby) System.out.println(osoba.toString());
     }
+
+    List<Klient> getKlienci(){ return klienci; }
 
     @Override
     public String toString() {

@@ -1,4 +1,7 @@
 package bank;
+
+import java.util.List;
+
 public class Konto {
     private String nazwa;
     private double saldo;
@@ -44,13 +47,37 @@ public class Konto {
         this.numerKonta = numerKonta;
     }
 
+    public void addSaldo(double kwota){
+        saldo += kwota;
+    }
+
     //TODO
     void przewalutowanie(double kwota, String waluta){
 
     }
 
     //TODO
-    void wykonajPrzelew(Przelew przelew){
+    void wykonajPrzelew(){
+        Przelew p = Klient.zacznijPrzelew();
+        String numer = p.getNumerKonta();
+        for(int i=0; i<Bank.getOsoby().size(); i++){
+            if(Bank.getOsoby().get(i).getClass().getSimpleName().equals("Klient")){
+                List<Konto> konta= ((Klient)Bank.getOsoby().get(i)).getKonta();
+                int ile_kont = konta.size();
+                for(int j=0;j<ile_kont;j++) {
+                    if(konta.get(j).getNumerKonta().equals(numer)){
+                        System.out.println("Numer sie zgadza, przelewamy");
+                        konta.get(j).addSaldo(p.getKwota());
+                    }
+                }
+            }
+
+        }
+
+
+
+
+
 
     }
 }
