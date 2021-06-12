@@ -14,10 +14,6 @@ public class Bank {
         return osoby;
     }
 
-    public void setOsoby(List<Osoba> osoby) {
-        this.osoby = osoby;
-    }
-
     Bank(String name, String adress) {
         this.name = name;
         this.adress = adress;
