@@ -20,6 +20,8 @@ public class Klient extends Osoba {
         Id += 1;
     }
 
+    public Klient(){}
+
     public List<Konto> getKonta() {
         return konta;
     }

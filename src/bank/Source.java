@@ -88,10 +88,12 @@ public class Source {
                 case 4:
                     System.out.println("Podaj date od-do dla której chcesz stworzyć raport");
 
-                    java.time.LocalDate odd = LocalDate.MIN;
-                    java.time.LocalDate doo = LocalDate.MAX;
+                    java.time.LocalDate odd = LocalDate.parse("2020-06-01");
+                    java.time.LocalDate doo = LocalDate.parse("2030-12-31");
 
-                    klient.stworzRaport(odd,doo);
+                    Raport raport = new Raport();
+                    raport.newRaport(klient, odd, doo);
+
 
 
                     break;

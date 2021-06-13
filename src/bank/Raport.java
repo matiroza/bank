@@ -1,8 +1,9 @@
 package bank;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Raport {
+public class Raport extends Klient {
     private Date Od;
     private Date Do;
     private double sumaWydatkow;
@@ -16,6 +17,13 @@ public class Raport {
         this.sumaPrzychodow = sumaPrzychodow;
         this.sumarycznyBilansKont = sumarycznyBilansKont;
     }
+
+    public Raport(Date od, Date aDo) {
+        Od = od;
+        Do = aDo;
+    }
+
+    public Raport(){}
 
 
     public double getSumaWydatkow() {
@@ -42,7 +50,14 @@ public class Raport {
         this.sumarycznyBilansKont = sumarycznyBilansKont;
     }
 
-    Raport newRaport(){
-        return new Raport(Od, Do, sumaWydatkow, sumaPrzychodow, sumarycznyBilansKont);
+    void newRaport(Klient klient, java.time.LocalDate Od, java.time.LocalDate Do){
+        ArrayList<Przelew> raport = klient.stworzRaport(Od, Do);
+        double suma = 0;
+
+        for (int i = 0; i < raport.size(); i++){
+            suma += raport.get(i).getKwota();
+        }
+
+        System.out.println("Suma wydatkow: " + suma);
     }
 }
