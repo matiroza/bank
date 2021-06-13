@@ -17,7 +17,7 @@ public class Source {
             System.out.println("4. wpłac środki");
             System.out.println("5. wypłata pieniędzy");
             System.out.println("6. weź pożyczke");
-            System.out.println("8. wyjdz");
+            System.out.println("7. wyjdz");
 
             int choose = scanner.nextInt();
 
@@ -91,7 +91,7 @@ public class Source {
                     java.time.LocalDate odd = LocalDate.MIN;
                     java.time.LocalDate doo = LocalDate.MAX;
 
-                    //klient.stworzRaport(odd,doo);
+                    klient.stworzRaport(odd,doo);
 
 
                     break;

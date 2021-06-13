@@ -8,12 +8,13 @@ public class Przelew {
     java.time.LocalDate dataWykonania;
 
 
-    public Przelew(double kwota, String numer,String tytul, String imieInazwisko, String adres) {
+    public Przelew(double kwota, String numer,String tytul, String imieInazwisko, String adres, java.time.LocalDate dataWykonania) {
         this.kwota = kwota;
         this.numerKonta = numer;
         this.tytul = tytul;
         this.imieInazwisko = imieInazwisko;
         this.adres = adres;
+        this.dataWykonania = dataWykonania;
     }
 
     public double getKwota() {

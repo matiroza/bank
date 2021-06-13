@@ -1,5 +1,6 @@
 package bank;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,7 +73,7 @@ public class Klient extends Osoba {
 
     static Przelew zacznijPrzelew() {
         Scanner scan = new Scanner(System.in);
-
+        java.time.LocalDate dataWykonania = LocalDate.now();
         System.out.println("Podaj kwotę: ");
         double kwota = scan.nextDouble();
         scan.nextLine();  //
@@ -84,7 +85,7 @@ public class Klient extends Osoba {
         String imie_i_nazwisko = scan.nextLine();
         System.out.println("Adres odbiorcy: ");
         String adres = scan.nextLine();
-        return new Przelew(kwota, numer, tytul, imie_i_nazwisko, adres);
+        return new Przelew(kwota, numer, tytul, imie_i_nazwisko, adres, dataWykonania);
     }
 
     static Pozyczka wniosekOpozyczke(double kwota){
